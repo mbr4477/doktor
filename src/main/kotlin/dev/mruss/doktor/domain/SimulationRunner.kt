@@ -35,8 +35,6 @@ class SimulationRunner(
                     it.compartments[initCond.compartment] = initCond.value.toDouble()
                 }
         }
-
-        println(initialState)
         history.add(initialState)
     }
 
@@ -104,7 +102,7 @@ class SimulationRunner(
             val dest = nextState.nodes.filter { it.identifier == edge.to }.first()
 
             sim.cdm.compartments.forEach { c ->
-                val weight = weights[c] ?: 0.0
+                val weight = weights[c] ?: 1.0
                 source.compartments[c] = ((source.compartments[c] ?: 0.0) * (1 - rate*weight) - constant*weight)
                 dest.compartments[c] = ((dest.compartments[c] ?: 0.0)
                         + ((source.compartments[c] ?: 0.0) * rate*weight)

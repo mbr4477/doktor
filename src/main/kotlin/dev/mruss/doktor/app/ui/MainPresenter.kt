@@ -31,7 +31,6 @@ class MainPresenter(private val view: View) {
                 withContext(Dispatchers.Unconfined) {
                     runner.runFor(duration)
                     withContext(Dispatchers.Main) {
-                        println(runner.history)
                         view.showResults(runner.history, sim.cdm.compartments)
                     }
                 }
